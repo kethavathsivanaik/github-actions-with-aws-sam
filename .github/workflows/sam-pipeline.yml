@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 'test'
     needs: build
+    steps: 
       - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-hello-world-qa-test --s3-bucket  sam-helloworld-bucket --capabilities CAPABILITY_IAM --region ap-south-1
 
 # Deploy in Prod
@@ -34,6 +35,7 @@ jobs:
     runs-on: ubuntu-latest 
     environment: 'prod'
     needs: build
+    steps: 
       - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-hello-world-prod --s3-bucket  sam-helloworld-bucket --capabilities CAPABILITY_IAM --region ap-south-1
 
 
