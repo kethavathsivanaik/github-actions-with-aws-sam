@@ -20,16 +20,16 @@ jobs:
           aws-region: ap-south-1
 
 # Upload Code to S3 
-#      - name: Upload code to S3
-#        run: aws s3 cp * s3://sam-helloworld-bucket/
+      - name: Upload code to S3
+        run: aws s3 sync * s3://sam-helloworld-bucket/  --recursive
 # Build
-      - run: sam build --use-container
+#      - run: sam build --use-container
       
-      - name: debug Setup tmate server  
-        uses: mxschmitt/action-tmate@v3
+#      - name: debug Setup tmate server  
+#        uses: mxschmitt/action-tmate@v3
         
-      - name: upload artifacts
-        uses: actions/upload-artifact@v2
+#      - name: upload artifacts
+#        uses: actions/upload-artifact@v2
           
         
         
@@ -40,8 +40,8 @@ jobs:
     environment: 'test'
     needs: build
     steps: 
-      - name: Download Artifacts 
-        uses: actions/download-artifact@v2
+#      - name: Download Artifacts 
+#        uses: actions/download-artifact@v2
         
       - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-hello-world-qa-test --s3-bucket  sam-helloworld-bucket --capabilities CAPABILITY_IAM --region ap-south-1
 
