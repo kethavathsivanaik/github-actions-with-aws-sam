@@ -19,8 +19,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-south-1
 
+# Upload Code to S3 
+      - name: Upload code to S3
+        run: aws s3 cp * s3://sam-helloworld-bucket/
 # Build
       - run: sam build --use-container
+      
+      - name: upload artifacts
+        uses: actions/upload-artifact@v2
+        
 
 # Deploy in QA | Test
   deploy-test: 
@@ -28,6 +35,9 @@ jobs:
     environment: 'test'
     needs: build
     steps: 
+      - name: Download Artifacts 
+        uses: actions/download-artifact@v2
+        
       - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name sam-hello-world-qa-test --s3-bucket  sam-helloworld-bucket --capabilities CAPABILITY_IAM --region ap-south-1
 
 # Deploy in Prod
