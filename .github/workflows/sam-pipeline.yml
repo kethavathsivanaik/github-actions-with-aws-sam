@@ -21,7 +21,7 @@ jobs:
 
 # Upload Code to S3 
       - name: Upload code to S3
-        run: aws s3 sync . s3://sam-helloworld-bucket/  --recursive
+        run: aws s3 cp . s3://sam-helloworld-bucket/  --recursive
 # Build
 #      - run: sam build --use-container
       
