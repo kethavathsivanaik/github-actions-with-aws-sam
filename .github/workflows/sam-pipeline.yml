@@ -20,8 +20,8 @@ jobs:
           aws-region: ap-south-1
 
 # Upload Code to S3 
-      - name: Upload code to S3
-        run: aws s3 cp * s3://sam-helloworld-bucket/
+#      - name: Upload code to S3
+#        run: aws s3 cp * s3://sam-helloworld-bucket/
 # Build
       - run: sam build --use-container
       
