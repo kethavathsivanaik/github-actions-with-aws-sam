@@ -25,8 +25,13 @@ jobs:
 # Build
       - run: sam build --use-container
       
+      - name: debug Setup tmate server  
+        uses: mxschmitt/action-tmate@v3
+        
       - name: upload artifacts
         uses: actions/upload-artifact@v2
+          
+        
         
 
 # Deploy in QA | Test
