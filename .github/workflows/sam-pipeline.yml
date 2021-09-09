@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 'test'
     steps:
-# Setup GitHub Actions Runner 
+# Setup GitHub Actions Runner
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
       - uses: aws-actions/setup-sam@v1
